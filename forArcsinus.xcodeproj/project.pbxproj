@@ -7,23 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED09719C1C81EBA300FCA931 /* noimg.png in Resources */ = {isa = PBXBuildFile; fileRef = ED09719B1C81EBA300FCA931 /* noimg.png */; };
+		ED0971A01C82063B00FCA931 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED09719E1C82063B00FCA931 /* Alamofire.framework */; };
+		ED0971A11C82063B00FCA931 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED09719F1C82063B00FCA931 /* SwiftyJSON.framework */; };
 		ED9931951C81DD9B00BD2AA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9931941C81DD9B00BD2AA9 /* AppDelegate.swift */; };
 		ED9931971C81DD9B00BD2AA9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9931961C81DD9B00BD2AA9 /* ViewController.swift */; };
-		ED99319A1C81DD9B00BD2AA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED9931981C81DD9B00BD2AA9 /* Main.storyboard */; };
+		ED99319A1C81DD9B00BD2AA9 /* RSMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED9931981C81DD9B00BD2AA9 /* RSMain.storyboard */; };
 		ED99319D1C81DD9B00BD2AA9 /* forArcsinus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED99319B1C81DD9B00BD2AA9 /* forArcsinus.xcdatamodeld */; };
 		ED99319F1C81DD9B00BD2AA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED99319E1C81DD9B00BD2AA9 /* Assets.xcassets */; };
-		ED9931A21C81DD9B00BD2AA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED9931A01C81DD9B00BD2AA9 /* LaunchScreen.storyboard */; };
+		ED9931AA1C81DF1200BD2AA9 /* RSSegue2OneContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9931A91C81DF1200BD2AA9 /* RSSegue2OneContent.swift */; };
+		ED9931AC1C81DF5E00BD2AA9 /* RSStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9931AB1C81DF5E00BD2AA9 /* RSStructure.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ED09719B1C81EBA300FCA931 /* noimg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noimg.png; path = forArcsinus/noimg.png; sourceTree = "<group>"; };
+		ED09719E1C82063B00FCA931 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		ED09719F1C82063B00FCA931 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		ED9931911C81DD9B00BD2AA9 /* forArcsinus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = forArcsinus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED9931941C81DD9B00BD2AA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ED9931961C81DD9B00BD2AA9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		ED9931991C81DD9B00BD2AA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ED9931991C81DD9B00BD2AA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RSMain.storyboard; sourceTree = "<group>"; };
 		ED99319C1C81DD9B00BD2AA9 /* forArcsinus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = forArcsinus.xcdatamodel; sourceTree = "<group>"; };
 		ED99319E1C81DD9B00BD2AA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		ED9931A11C81DD9B00BD2AA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED9931A31C81DD9B00BD2AA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED9931A91C81DF1200BD2AA9 /* RSSegue2OneContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSegue2OneContent.swift; sourceTree = "<group>"; };
+		ED9931AB1C81DF5E00BD2AA9 /* RSStructure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSStructure.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,16 +39,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED0971A01C82063B00FCA931 /* Alamofire.framework in Frameworks */,
+				ED0971A11C82063B00FCA931 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED0971A21C82066D00FCA931 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				ED09719E1C82063B00FCA931 /* Alamofire.framework */,
+				ED09719F1C82063B00FCA931 /* SwiftyJSON.framework */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+		ED0971A31C82068900FCA931 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				ED09719B1C81EBA300FCA931 /* noimg.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		ED9931881C81DD9B00BD2AA9 = {
 			isa = PBXGroup;
 			children = (
 				ED9931931C81DD9B00BD2AA9 /* forArcsinus */,
+				ED0971A31C82068900FCA931 /* Images */,
+				ED0971A21C82066D00FCA931 /* Framework */,
 				ED9931921C81DD9B00BD2AA9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -58,9 +87,10 @@
 			children = (
 				ED9931941C81DD9B00BD2AA9 /* AppDelegate.swift */,
 				ED9931961C81DD9B00BD2AA9 /* ViewController.swift */,
-				ED9931981C81DD9B00BD2AA9 /* Main.storyboard */,
+				ED9931A91C81DF1200BD2AA9 /* RSSegue2OneContent.swift */,
+				ED9931AB1C81DF5E00BD2AA9 /* RSStructure.swift */,
+				ED9931981C81DD9B00BD2AA9 /* RSMain.storyboard */,
 				ED99319E1C81DD9B00BD2AA9 /* Assets.xcassets */,
-				ED9931A01C81DD9B00BD2AA9 /* LaunchScreen.storyboard */,
 				ED9931A31C81DD9B00BD2AA9 /* Info.plist */,
 				ED99319B1C81DD9B00BD2AA9 /* forArcsinus.xcdatamodeld */,
 			);
@@ -77,6 +107,7 @@
 				ED99318D1C81DD9B00BD2AA9 /* Sources */,
 				ED99318E1C81DD9B00BD2AA9 /* Frameworks */,
 				ED99318F1C81DD9B00BD2AA9 /* Resources */,
+				ED09719D1C8205F700FCA931 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -125,19 +156,39 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED9931A21C81DD9B00BD2AA9 /* LaunchScreen.storyboard in Resources */,
 				ED99319F1C81DD9B00BD2AA9 /* Assets.xcassets in Resources */,
-				ED99319A1C81DD9B00BD2AA9 /* Main.storyboard in Resources */,
+				ED09719C1C81EBA300FCA931 /* noimg.png in Resources */,
+				ED99319A1C81DD9B00BD2AA9 /* RSMain.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		ED09719D1C8205F700FCA931 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		ED99318D1C81DD9B00BD2AA9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED9931AC1C81DF5E00BD2AA9 /* RSStructure.swift in Sources */,
+				ED9931AA1C81DF1200BD2AA9 /* RSSegue2OneContent.swift in Sources */,
 				ED9931971C81DD9B00BD2AA9 /* ViewController.swift in Sources */,
 				ED99319D1C81DD9B00BD2AA9 /* forArcsinus.xcdatamodeld in Sources */,
 				ED9931951C81DD9B00BD2AA9 /* AppDelegate.swift in Sources */,
@@ -147,20 +198,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		ED9931981C81DD9B00BD2AA9 /* Main.storyboard */ = {
+		ED9931981C81DD9B00BD2AA9 /* RSMain.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				ED9931991C81DD9B00BD2AA9 /* Base */,
 			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		ED9931A01C81DD9B00BD2AA9 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ED9931A11C81DD9B00BD2AA9 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
+			name = RSMain.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -253,6 +296,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = forArcsinus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = pw.forArcsinus;
@@ -264,6 +311,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = forArcsinus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = pw.forArcsinus;
@@ -290,6 +341,7 @@
 				ED9931A81C81DD9B00BD2AA9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -8,8 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class RSOneContentVC: UIViewController {
 
+    var RSURL : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
