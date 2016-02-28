@@ -8,37 +8,28 @@
 
 import UIKit
 
-class RSOneContentVC: UIViewController {
 
+class RSOneContentVC: UIViewController {
+    
+    @IBOutlet weak var RSActivity: UIActivityIndicatorView!
     @IBOutlet weak var RSImageView: UIImageView!
     @IBOutlet weak var RSHeaderLabel: UILabel!
     @IBOutlet weak var RSDateLabel: UILabel!
     @IBOutlet weak var RSTextLabel: UILabel!
     
-    var RSURL : String = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        if let img = contents[i].image {
-            self.RSImageView.image = Contents.shared.image(<#T##i: Int##Int#>) .image(0) //content .image(0)
-//        } else {
-//            Alamofire.request(.GET, RSURLSite+self.contents[i].imgUrl).responseString { response in
-//                if let data = response.data {
-//                    let img = UIImage(data: data)
-//                    cell.RSImageView.image = img
-//                    self.contents[i].image = img
-//                }
-//            }
-//        }
-//        // Do any additional setup after loading the view, typically from a nib.
+        dispatch_async(dispatch_get_main_queue()) {
+            if let img = Contents.shared.currentImage() {
+                self.RSImageView.image = img
+            } else {
+                self.RSImageView.image = UIImage(named: "noimg.png")
+            }
+            self.RSActivity.stopAnimating()
+        }
+        self.RSHeaderLabel.text = Contents.shared.currentHeader()
+        self.RSDateLabel.text = Contents.shared.currentLink()
+        self.RSTextLabel.text = Contents.shared.currentText()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 
