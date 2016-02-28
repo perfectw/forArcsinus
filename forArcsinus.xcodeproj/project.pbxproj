@@ -11,12 +11,13 @@
 		ED0971A01C82063B00FCA931 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED09719E1C82063B00FCA931 /* Alamofire.framework */; };
 		ED0971A11C82063B00FCA931 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED09719F1C82063B00FCA931 /* SwiftyJSON.framework */; };
 		ED9931951C81DD9B00BD2AA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9931941C81DD9B00BD2AA9 /* AppDelegate.swift */; };
-		ED9931971C81DD9B00BD2AA9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9931961C81DD9B00BD2AA9 /* ViewController.swift */; };
+		ED9931971C81DD9B00BD2AA9 /* RSOneContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9931961C81DD9B00BD2AA9 /* RSOneContentVC.swift */; };
 		ED99319A1C81DD9B00BD2AA9 /* RSMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED9931981C81DD9B00BD2AA9 /* RSMain.storyboard */; };
 		ED99319D1C81DD9B00BD2AA9 /* forArcsinus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED99319B1C81DD9B00BD2AA9 /* forArcsinus.xcdatamodeld */; };
 		ED99319F1C81DD9B00BD2AA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED99319E1C81DD9B00BD2AA9 /* Assets.xcassets */; };
-		ED9931AA1C81DF1200BD2AA9 /* RSSegue2OneContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9931A91C81DF1200BD2AA9 /* RSSegue2OneContent.swift */; };
+		ED9931AA1C81DF1200BD2AA9 /* RSAllContentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9931A91C81DF1200BD2AA9 /* RSAllContentsVC.swift */; };
 		ED9931AC1C81DF5E00BD2AA9 /* RSStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9931AB1C81DF5E00BD2AA9 /* RSStructure.swift */; };
+		EDF89C751C826B93005B252B /* RSAllContentsVCextension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF89C741C826B93005B252B /* RSAllContentsVCextension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,13 +26,14 @@
 		ED09719F1C82063B00FCA931 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		ED9931911C81DD9B00BD2AA9 /* forArcsinus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = forArcsinus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED9931941C81DD9B00BD2AA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ED9931961C81DD9B00BD2AA9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		ED9931961C81DD9B00BD2AA9 /* RSOneContentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSOneContentVC.swift; sourceTree = "<group>"; };
 		ED9931991C81DD9B00BD2AA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RSMain.storyboard; sourceTree = "<group>"; };
 		ED99319C1C81DD9B00BD2AA9 /* forArcsinus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = forArcsinus.xcdatamodel; sourceTree = "<group>"; };
 		ED99319E1C81DD9B00BD2AA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED9931A31C81DD9B00BD2AA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ED9931A91C81DF1200BD2AA9 /* RSSegue2OneContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSegue2OneContent.swift; sourceTree = "<group>"; };
+		ED9931A91C81DF1200BD2AA9 /* RSAllContentsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSAllContentsVC.swift; sourceTree = "<group>"; };
 		ED9931AB1C81DF5E00BD2AA9 /* RSStructure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSStructure.swift; sourceTree = "<group>"; };
+		EDF89C741C826B93005B252B /* RSAllContentsVCextension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSAllContentsVCextension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,11 +87,12 @@
 		ED9931931C81DD9B00BD2AA9 /* forArcsinus */ = {
 			isa = PBXGroup;
 			children = (
-				ED9931941C81DD9B00BD2AA9 /* AppDelegate.swift */,
-				ED9931961C81DD9B00BD2AA9 /* ViewController.swift */,
-				ED9931A91C81DF1200BD2AA9 /* RSSegue2OneContent.swift */,
-				ED9931AB1C81DF5E00BD2AA9 /* RSStructure.swift */,
 				ED9931981C81DD9B00BD2AA9 /* RSMain.storyboard */,
+				ED9931A91C81DF1200BD2AA9 /* RSAllContentsVC.swift */,
+				EDF89C741C826B93005B252B /* RSAllContentsVCextension.swift */,
+				ED9931961C81DD9B00BD2AA9 /* RSOneContentVC.swift */,
+				ED9931AB1C81DF5E00BD2AA9 /* RSStructure.swift */,
+				ED9931941C81DD9B00BD2AA9 /* AppDelegate.swift */,
 				ED99319E1C81DD9B00BD2AA9 /* Assets.xcassets */,
 				ED9931A31C81DD9B00BD2AA9 /* Info.plist */,
 				ED99319B1C81DD9B00BD2AA9 /* forArcsinus.xcdatamodeld */,
@@ -188,10 +191,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED9931AC1C81DF5E00BD2AA9 /* RSStructure.swift in Sources */,
-				ED9931AA1C81DF1200BD2AA9 /* RSSegue2OneContent.swift in Sources */,
-				ED9931971C81DD9B00BD2AA9 /* ViewController.swift in Sources */,
+				ED9931AA1C81DF1200BD2AA9 /* RSAllContentsVC.swift in Sources */,
+				ED9931971C81DD9B00BD2AA9 /* RSOneContentVC.swift in Sources */,
 				ED99319D1C81DD9B00BD2AA9 /* forArcsinus.xcdatamodeld in Sources */,
 				ED9931951C81DD9B00BD2AA9 /* AppDelegate.swift in Sources */,
+				EDF89C751C826B93005B252B /* RSAllContentsVCextension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

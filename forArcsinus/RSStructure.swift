@@ -1,30 +1,8 @@
 
 import UIKit
-
-let RSURLSite = "http://the-flow.ru"
-
-
-//"banner" : 0,
-//"change_datetime" : "07-12-2015 14:09:36", - Время последнего изменения
-//"content_status_id" : 2, 1 - Новый, 2 - Доступен для приложения, 3 - Не доступен для приложения, 4 - Должен быть удален
-//"content_type_id" : 0, - 0 - новость, 1 - акция, 2 - спецпредложение
-//"deleted" : 1, - не интересует
-//"end_datetime" : "00-00-0000 23:59:59",
-//"full_text" : "тест 4",        - Полное описание
-//"header" : "Тестовая новость", - Заголовок
-//"id" : 165,                    - идентификатор
-//"img_banner_url" : null,       - не интересует
-//"img_height" : null,           - не интересует
-//"img_preview_url" : "",        - Url превью картинки
-//"img_url" : null,              - Url картинки
-//"img_width" : null,            - не интересует
-//"link" : "",                   - ссылка на источник
-//"publish_time" : "07-12-2015 14:03:53",   - Время публикации контента
-//"short_text" : "ОЧЕНЬ краткий текст",     - Краткое описание
-//"start_datetime" : "00-00-0000 00:00:00", - Время начала действия акции
-//"status" : "Доступен для приложения",     - Текстовое описание статуса
-//"template" : 1, - не интересует
-//"type" : "Новость" - описание типа
+import Alamofire
+import SwiftyJSON
+import CoreLocation
 
 
 enum ContentStatus : Int {
@@ -41,6 +19,7 @@ enum ContentType : Int {
     case Special = 2
 }
 
+// MARK: Content
 class Content {
     var text, header, imgPreviewUrl, imgUrl, link : String
     var id : Int
@@ -49,7 +28,7 @@ class Content {
     var typeString : String
     var datePublish, dateChange : NSDate    // no end_datetime & start_datetime
     var shortText : String // Краткое описание
-    var image, previewImage : UIImage!
+    var image, imagePreview : UIImage!
     init (id: String, header: String, text: String, imgPreviewUrl: String, imgUrl: String, link: String, shortText: String, status: String, type: String, typeString: String, datePublish: String, dateChange: String ) {
         self.text = text; self.header = header; self.imgPreviewUrl = imgPreviewUrl; self.imgUrl = imgUrl;
         self.link = link
@@ -71,6 +50,171 @@ class Content {
     }
 }
 
+
+// MARK: Contents
+class Contents: NSObject, CLLocationManagerDelegate {
+    static let shared = Contents()
+    private override init() {}
+    // MARK: array
+    private var array : [Content] = []
+    func append(content : Content) {
+        self.array.append(content)
+    }
+    func count() -> Int {
+        return self.array.count
+    }
+    func header(i: Int) -> String {
+        return self.array[i].header
+    }
+    func text(i: Int) -> String {
+        return self.array[i].text
+    }
+    func typeDate(i: Int) -> (text: String, color: UIColor) {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "dd MMMM yyyy"
+        let date = formatter.stringFromDate(self.array[i].dateChange)
+        switch self.array[i].type {
+        case ContentType.Promotion :
+            return("Акция, "+date, UIColor.blueColor())
+        case ContentType.Special :
+            return("Спецпредложение, "+date, UIColor.redColor())
+        default:
+            return("Новость, "+date, UIColor.orangeColor())
+        }
+    }
+    func image(i: Int) -> UIImage? {
+        return self.array[i].image
+    }
+    func imgUrl(i: Int) -> String {
+        return self.array[i].imgUrl
+    }
+    internal func setImage(image: UIImage, index: Int) {
+        self.array[index].image = image
+    }
+    func imagePreview(i: Int) -> UIImage? {
+        return self.array[i].imagePreview
+    }
+    func imgPreviewUrl(i: Int) -> String {
+        return self.array[i].imgPreviewUrl
+    }
+    internal func setImagePreview(imagePreview: UIImage, index: Int) {
+        self.array[index].imagePreview = imagePreview
+    }
+    // current
+    internal var current : Int = 0
+    internal func currentImage() -> UIImage? {
+        if let img = array[current].image {
+            return img
+        } else {
+            if let data = NSData(contentsOfURL: NSURL(string: self.array[current].imgUrl)!) {
+                if let img = UIImage(data: data) {
+                    self.array[self.current].image = img
+                    return img
+                }
+            }
+            return nil
+        }
+    }
+    // MARK: HTML
+    private var RSUID : String! = nil
+    func UID() -> String {
+        if let uid = self.RSUID {
+            return uid
+        } else { return "911" }
+    }
+    let locationManager = CLLocationManager()
+    func postAIUID() {
+        // temp location?
+        let parameters = [
+            "app_key" : "04f0f542ea27a58461a44fbd75a89b30",
+            "package_name" : "ru.arcsinus.SalesBlast",
+            "app_version" : "1.1.0",
+            "latitude" : String(locationManager.location!.coordinate.latitude),
+            "longitude" : String(locationManager.location!.coordinate.longitude),
+            "devicetype" : "0",
+            "deviceversion": UIDevice.currentDevice().systemVersion,
+            "devicemodel" : UIDevice.currentDevice().model,
+            "screenwidth" : String(UIScreen.mainScreen().bounds.width),
+            "screenheight" : String(UIScreen.mainScreen().bounds.height),
+            "aiuid" : UIDevice.currentDevice().identifierForVendor!.UUIDString ]
+        parameters
+        
+        
+        Alamofire.request(.POST, "http://service-retailmob.rhcloud.com/api/v1/mobclient/register", parameters: parameters).responseJSON { response in
+            if let jsonData = response.data {
+                let json = JSON(data: jsonData)
+                print(json)
+                // if OK
+                if json["status"].int == 0 {
+                    self.RSUID = json["data"]["UID"].string
+                    self.getContent()
+                }
+            }
+        }
+    }
+    
+    func askLocationPermission() {
+        locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startMonitoringSignificantLocationChanges()//.startUpdatingLocation()
+        let i = 0
+    }
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        print("status has changed: \(status.rawValue)")
+        manager.location?.coordinate.latitude
+        if status.rawValue == 2 {
+            self.locationManager.requestWhenInUseAuthorization()
+        }
+        checkAuthorization()
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let currentLocation : CLLocation = locations.last!
+        print("locations")
+        print("locations count:",locations.count )
+        print(currentLocation.coordinate.latitude)
+        print(currentLocation.coordinate.longitude)
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
+        print("toLocation")
+        let currentLocation : CLLocation = newLocation
+        print(currentLocation.coordinate.latitude)
+        print(currentLocation.coordinate.longitude)
+    }
+    
+    func locationManagerDidPauseLocationUpdates(manager: CLLocationManager) {
+        print("pause")
+        checkAuthorization()
+    }
+    
+    func locationManagerDidResumeLocationUpdates(manager: CLLocationManager) {
+        print("resume")
+        checkAuthorization()
+    }
+    func locationManager(manager: CLLocationManager, didFinishDeferredUpdatesWithError error: NSError?) {
+        print("ERROR: didFinishDeferredUpdatesWithError: \(error)")
+    }
+    
+    func checkAuthorization() {
+        //        // Check if the user allowed authorization
+        if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse        {
+            print(locationManager.location)
+        }  else {
+            print("no location :(")
+            
+            locationManager.requestWhenInUseAuthorization()
+        }
+    }
+    func noimg() {
+        self.array.last?.imagePreview = UIImage(named: "noimg.png")
+    }
+    
+}
+
+
 extension String {
     subscript (i: Int) -> Character {
         return self[self.startIndex.advancedBy(i)]
@@ -88,9 +232,11 @@ extension String {
         //Specify Format of String to Parse
         dateFormatter.dateFormat = "dd-MM-yyyy hh:mm:ss"
         //Parse into NSDate
-        let dateFromString : NSDate = dateFormatter.dateFromString(self)!
-        //Return Parsed Date
-        return dateFromString
+        if let dateFromString : NSDate = dateFormatter.dateFromString(self) {
+            //Return Parsed Date
+            return dateFromString
+        }
+        return NSDate()
     }
 }
 
