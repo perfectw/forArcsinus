@@ -17,18 +17,64 @@ class RSOneContentVC: UIViewController {
     @IBOutlet weak var RSDateLabel: UILabel!
     @IBOutlet weak var RSTextLabel: UILabel!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        dispatch_async(dispatch_get_main_queue()) {
+        // image
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) {
             if let img = Contents.shared.currentImage() {
-                self.RSImageView.image = img
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.RSActivity.stopAnimating()
+                    self.RSImageView.image = img
+                    Contents.shared.setCurrentImage(img)
+                }
             } else {
-                self.RSImageView.image = UIImage(named: "noimg.png")
+                // try download
+                if let imgUrl = Contents.shared.currentImageUrl() {
+                    if let url = NSURL(string: imgUrl) {
+                        if let data = NSData(contentsOfURL: url) {
+                            if let img = UIImage(data: data) {
+                                dispatch_async(dispatch_get_main_queue()) {
+                                    self.RSActivity.stopAnimating()
+                                    self.RSImageView.image = img
+                                    Contents.shared.setCurrentImage(img)
+                                }
+                            } else {
+                                dispatch_async(dispatch_get_main_queue()) {
+                                    self.RSActivity.stopAnimating()
+                                    self.RSImageView.image = RSNoImage
+                                    Contents.shared.setCurrentImage(RSNoImage)
+                                }
+                            }
+                        } else {
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.RSActivity.stopAnimating()
+                                self.RSImageView.image = RSNoImage
+                                Contents.shared.setCurrentImage(RSNoImage)
+                            }
+                        }
+                    } else {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.RSActivity.stopAnimating()
+                            self.RSImageView.image = RSNoImage
+                            Contents.shared.setCurrentImage(RSNoImage)
+                        }
+                    }
+                } else {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.RSActivity.stopAnimating()
+                        self.RSImageView.image = RSNoImage
+                        Contents.shared.setCurrentImage(RSNoImage)
+                    }
+                }
             }
-            self.RSActivity.stopAnimating()
         }
+        
+        // at design - Date; at Task - Link
+        let underlineAttribute = [NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue]
+        self.RSDateLabel.attributedText = NSAttributedString(string: Contents.shared.currentLink(), attributes: underlineAttribute)
+        
         self.RSHeaderLabel.text = Contents.shared.currentHeader()
-        self.RSDateLabel.text = Contents.shared.currentLink()
         self.RSTextLabel.text = Contents.shared.currentText()
     }
 }

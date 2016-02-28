@@ -1,5 +1,6 @@
 
 import UIKit
+import SystemConfiguration
 
 
 enum ContentType : Int {
@@ -20,12 +21,13 @@ enum ContentType : Int {
 // MARK: Content
 class Content {
     var id : Int
-    var header, text, shortText, imgPreviewUrl, imgUrl, link : String
+    var header, text, shortText, link : String
+    var imgPreviewUrl, imgUrl : String?
     var type : ContentType
     //    var status : ContentStatus
     var datePublish : NSDate    // no dateChange & end_datetime & start_datetime
     var image, imagePreview : UIImage!
-    init (id: String, header: String, text: String, imgPreviewUrl: String, imgUrl: String, link: String, shortText: String, status: String, type: String, typeString: String, datePublish: String, dateChange: String ) {
+    init (id: String, header: String, text: String, imgPreviewUrl: String, imgUrl: String, link: String, shortText: String, type: String, datePublish: String ) {
         if let ID = Int(id) { self.id = ID }    else { self.id = 0 }
         self.header = header; self.text = text; self.shortText = shortText;
         self.imgPreviewUrl = imgPreviewUrl; self.imgUrl = imgUrl; self.link = link
@@ -45,6 +47,31 @@ class Content {
 
 
 
+let RSGotContents = "RSGotContents"
+let RSOffline = "RSOffline"
+let RSOpenSettingsURL = "RSOpenSettingsURL"
+let RSGetContentAgain = "RSGetContentAgain"
+let RSNoImage = UIImage(named: "noimg.png")!
+
+public class Reachability {
+    class func isConnectedToNetwork() -> Bool {
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        let defaultRouteReachability = withUnsafePointer(&zeroAddress) {
+            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
+        }
+        var flags = SCNetworkReachabilityFlags()
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+            return false
+        }
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        return (isReachable && !needsConnection)
+    }
+}
+
+
 extension String {
     func toNSDate() -> NSDate
     {
@@ -57,7 +84,6 @@ extension String {
     }
 }
 
-let RSGotContents = "RSGotContents"
 
 public func <(a: NSDate, b: NSDate) -> Bool {
     return a.compare(b) == NSComparisonResult.OrderedAscending

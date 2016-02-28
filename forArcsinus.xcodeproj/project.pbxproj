@@ -17,7 +17,6 @@
 		ED99319F1C81DD9B00BD2AA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED99319E1C81DD9B00BD2AA9 /* Assets.xcassets */; };
 		ED9931AA1C81DF1200BD2AA9 /* RSAllContentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9931A91C81DF1200BD2AA9 /* RSAllContentsVC.swift */; };
 		ED9931AC1C81DF5E00BD2AA9 /* RSStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9931AB1C81DF5E00BD2AA9 /* RSStructure.swift */; };
-		EDF89C791C828F85005B252B /* RSContentsCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF89C781C828F85005B252B /* RSContentsCoreData.swift */; };
 		EDF89C7B1C829D72005B252B /* RSContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF89C7A1C829D72005B252B /* RSContents.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +33,6 @@
 		ED9931A31C81DD9B00BD2AA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED9931A91C81DF1200BD2AA9 /* RSAllContentsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSAllContentsVC.swift; sourceTree = "<group>"; };
 		ED9931AB1C81DF5E00BD2AA9 /* RSStructure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSStructure.swift; sourceTree = "<group>"; };
-		EDF89C781C828F85005B252B /* RSContentsCoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSContentsCoreData.swift; sourceTree = "<group>"; };
 		EDF89C7A1C829D72005B252B /* RSContents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSContents.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,9 +90,8 @@
 				ED9931981C81DD9B00BD2AA9 /* RSMain.storyboard */,
 				ED9931A91C81DF1200BD2AA9 /* RSAllContentsVC.swift */,
 				ED9931961C81DD9B00BD2AA9 /* RSOneContentVC.swift */,
-				ED9931AB1C81DF5E00BD2AA9 /* RSStructure.swift */,
 				EDF89C7A1C829D72005B252B /* RSContents.swift */,
-				EDF89C781C828F85005B252B /* RSContentsCoreData.swift */,
+				ED9931AB1C81DF5E00BD2AA9 /* RSStructure.swift */,
 				ED9931941C81DD9B00BD2AA9 /* AppDelegate.swift */,
 				ED99319E1C81DD9B00BD2AA9 /* Assets.xcassets */,
 				ED9931A31C81DD9B00BD2AA9 /* Info.plist */,
@@ -197,7 +194,6 @@
 				ED9931AA1C81DF1200BD2AA9 /* RSAllContentsVC.swift in Sources */,
 				ED9931971C81DD9B00BD2AA9 /* RSOneContentVC.swift in Sources */,
 				ED99319D1C81DD9B00BD2AA9 /* forArcsinus.xcdatamodeld in Sources */,
-				EDF89C791C828F85005B252B /* RSContentsCoreData.swift in Sources */,
 				ED9931951C81DD9B00BD2AA9 /* AppDelegate.swift in Sources */,
 				EDF89C7B1C829D72005B252B /* RSContents.swift in Sources */,
 			);
