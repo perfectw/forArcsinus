@@ -124,12 +124,12 @@ class Contents: NSObject, CLLocationManagerDelegate {
                 let dummyJSON = JSON(data: dummyData)
                 let contentJSON = dummyJSON["data"]["content"]
                 for (_, subJSON) in contentJSON {
-//                    print(subJSON)
                     let id = subJSON["id"].stringValue
                     let header = subJSON["header"].stringValue
                     let text = subJSON["full_text"].stringValue
                     let imgPreviewUrl = subJSON["img_preview_url"].stringValue
-                    let imgUrl = "http://service-retailmob.rhcloud.com/images/105/content/107/image/1.png"//subJSON["img_url"].stringValue
+//                    let imgUrl = subJSON["img_url"].stringValue
+                    let imgUrl = "http://service-retailmob.rhcloud.com/images/105/content/107/image/1.png"
                     let link = subJSON["link"].stringValue
                     let shortText = subJSON["short_text"].stringValue
                     let type = subJSON["content_type_id"].stringValue
@@ -189,25 +189,6 @@ class Contents: NSObject, CLLocationManagerDelegate {
         do {
             let fetchedEntities = try managedContext.executeFetchRequest(request) as! [NSManagedObject]
             for fetchedEntity in fetchedEntities {
-//                let idTemp, headerTemp, textTemp, imgPreviewUrlTemp, imgUrlTemp, linkTemp, shortTextTemp, typeTemp, datePublishTemp : String
-//                if let id = fetchedEntity.valueForKey("id") as? String {
-//                    idTemp = id  } else { idTemp = "" }
-//                if let header = fetchedEntity.valueForKey("header") as? String {
-//                    headerTemp = header  } else { headerTemp = "" }
-//                if let text = fetchedEntity.valueForKey("text") as? String {
-//                    textTemp = text  } else { textTemp = "" }
-//                if let imgPreviewUrl = fetchedEntity.valueForKey("imgPreviewUrl") as? String {
-//                    imgPreviewUrlTemp = imgPreviewUrl  } else { imgPreviewUrlTemp = "" }
-//                if let imgUrl = fetchedEntity.valueForKey("imgUrl") as? String {
-//                    imgUrlTemp = imgUrl  } else { imgUrlTemp = "" }
-//                if let link = fetchedEntity.valueForKey("link") as? String {
-//                    linkTemp = link  } else { linkTemp = "" }
-//                if let shortText = fetchedEntity.valueForKey("shortText") as? String {
-//                    shortTextTemp = shortText  } else { shortTextTemp = "" }
-//                if let type = fetchedEntity.valueForKey("type") as? Int {
-//                    typeTemp = String(type) } else { typeTemp = "0" }
-//                if let datePublish = fetchedEntity.valueForKey("datePublish") as? String {
-//                    datePublishTemp = datePublish  } else { datePublishTemp = "" }
                 self.array.append(Content(id: fetchedEntity.valueForKey("id") as! String, header: fetchedEntity.valueForKey("header") as! String, text: fetchedEntity.valueForKey("text") as! String, imgPreviewUrl: fetchedEntity.valueForKey("imgPreviewUrl") as! String, imgUrl: fetchedEntity.valueForKey("imgUrl") as! String, link: fetchedEntity.valueForKey("link") as! String, shortText: fetchedEntity.valueForKey("shortText") as! String, type: String(fetchedEntity.valueForKey("type") as! Int), datePublish: fetchedEntity.valueForKey("datePublish") as! String))
                 if let data = (fetchedEntity.valueForKey("image") as? NSData) {if let img = UIImage(data: data) {
                     self.array.last?.image = img }
